@@ -25,9 +25,36 @@ Write a function for calculatying Welch's t-statistic using two samples a, and b
 import numpy as np
 
 np.random.seed(82)
-a = np.random.randn(10) + 2 # +2 for shifting mean 
-b = np.random.randn(10) + 2
+control = np.random.normal(loc=10, scale=1, size=8)
+treatment = np.random.normal(loc=10.5, scale=1.2, size=12)
 ```
+
+
+```python
+control
+```
+
+
+
+
+    array([10.8406504 ,  8.64285284, 11.28693651, 10.57347539, 10.57945015,
+            9.97237817,  9.61844717,  9.69121804])
+
+
+
+
+```python
+treatment
+```
+
+
+
+
+    array([12.16530726, 12.5597993 , 11.76525366,  9.82399228, 11.03539891,
+           12.8992533 , 10.78680718, 11.71126641, 10.2343344 ,  9.77839837,
+            9.72938618, 10.39959928])
+
+
 
 
 ```python
@@ -42,16 +69,16 @@ def welch_t(a, b):
     
     denominator = np.sqrt(a.var(ddof=1)/a.size + b.var(ddof=1)/b.size)
     
-    return numerator/denominator
+    return np.abs(numerator/denominator)
 
-welch_t(a,b)
-# 0.41037468596041143
+welch_t(control, treatment)
+# 2.0997990691576858
 ```
 
 
 
 
-    0.41037468596041143
+    2.0997990691576858
 
 
 
@@ -83,14 +110,14 @@ def welch_df(a, b):
     
     return numerator/denominator
 
-welch_df(a, b)
+welch_df(control, treatment)
 # 17.86731104513857
 ```
 
 
 
 
-    17.86731104513857
+    17.673079085111
 
 
 
@@ -99,17 +126,13 @@ Now calculate the welch-t score and degrees of freedom from the samples, a and b
 
 ```python
 #Your code here; calculate t and the degrees of freedom for the two samples, a and b
-t = welch_t(treatment, control)
-df = welch_df(treatment, control)
+t = welch_t(control, treatment)
+df = welch_df(control, treatment)
 print(t,df)
-# (1.325675538604432, 8.95372010421334)
+# 2.0997990691576858 17.673079085111
 ```
 
-
-
-
-    (1.325675538604432, 8.95372010421334)
-
+    2.0997990691576858 17.673079085111
 
 
 ## Converting to a p-Value
@@ -120,19 +143,20 @@ Calculate the p-value associated with this experiment.
 
 
 ```python
-p = 1 - stats.t.cdf(t, df)
-p
-# 0.10888620005627703
+import scipy.stats as stats
 ```
 
 
+```python
+p = 1 - stats.t.cdf(t, df)
+print(p)
+# 0.025191666225846454
+```
+
+    0.025191666225846454
 
 
-    0.10888620005627703
-
-
-
-In this case, there is a 10% probability you would see t equal to or greater than what you saw from the data. Given that alpha was set at 0.05, this would not constitute sufficient evidence to reject the null hypothesis.
+In this case, there is a 2.5% probability you would see t equal to or greater than what you saw from the data. Given that alpha was set at 0.05, this would constitute sufficient evidence to reject the null hypothesis.
 
 Building on this, you can also write a function that calculates the p-value for given samples with a two-sided test by taking advantage of the symmetry of the t-distribution to calculate only one side. The two-tailed p-value is simply twice the one-tailed value, because you want the probability:  
 >$t<−|t̂|$ and  $t>|t̂|$ , where t̂  is the t-statistic calculated from our data  
@@ -145,12 +169,10 @@ With that, define a summative function `p_val_welch(a, b, two_sided=False)` whic
 ```python
 def p_value(a, b, two_sided=False):
 
-    "Two-sided t-test for two samples a and b."
-
     t = welch_t(a, b)
     df = welch_df(a, b)
     
-    p = stats.t.cdf(-np.abs(t), df)
+    p = 1-stats.t.cdf(np.abs(t), df)
     
     if two_sided:
         return 2*p
@@ -162,22 +184,29 @@ Now briefly test your function; no need to write any code just run the cells bel
 
 
 ```python
-p_value(treatment, control)
-#0.10888620005627703
+p_value(control, treatment)
+#0.025191666225846454
 ```
 
 
 
 
-    (1.325675538604432, 0.21777240011255405)
+    0.025191666225846454
 
 
 
 
 ```python
-p_value(treatment, control, two_side=True)
-#0.21777240011255405
+p_value(control, treatment, two_sided=True)
+#0.05038333245169291
 ```
+
+
+
+
+    0.05038333245169291
+
+
 
 ## Summary
 
