@@ -25,8 +25,8 @@ Write a function for calculatying Welch's t-statistic using two samples a, and b
 import numpy as np
 
 np.random.seed(82)
-a = np.random.randn(10) + 2 # +2 for shifting mean 
-b = np.random.randn(10) + 2
+control = np.random.randn(10) + 2 # +2 for shifting mean 
+treatment = np.random.randn(10) + 2
 ```
 
 
@@ -35,25 +35,12 @@ def welch_t(a, b):
     
     """ Calculate Welch's t statistic for two samples. """
 
-    numerator = a.mean() - b.mean()
     
-    # “ddof = Delta Degrees of Freedom”: the divisor used in the calculation is N - ddof, 
-    #  where N represents the number of elements. By default ddof is zero.
-    
-    denominator = np.sqrt(a.var(ddof=1)/a.size + b.var(ddof=1)/b.size)
-    
-    return numerator/denominator
+    return #Return the t-score!
 
-welch_t(a,b)
+welch_t(control,treatment)
 # 0.41037468596041143
 ```
-
-
-
-
-    0.41037468596041143
-
-
 
 ## Degrees of Freedom
 Once you have the t-score, you also need to calculate the degrees of freedom to determine the appropriate t-distribution and convert this score into a p-value. The effective degrees of freedom can be calculated using the formula:
@@ -72,45 +59,20 @@ Write a second function to calculate degree of freedom for above samples:
 def welch_df(a, b):
     
     """ Calculate the effective degrees of freedom for two samples. """
-    
-    s1 = a.var(ddof=1) 
-    s2 = b.var(ddof=1)
-    n1 = a.size
-    n2 = b.size
-    
-    numerator = (s1/n1 + s2/n2)**2
-    denominator = (s1/ n1)**2/(n1 - 1) + (s2/ n2)**2/(n2 - 1)
-    
-    return numerator/denominator
+    return #Return the degrees of freedom
 
-welch_df(a, b)
+welch_df(control, treatment)
 # 17.86731104513857
 ```
-
-
-
-
-    17.86731104513857
-
-
 
 Now calculate the welch-t score and degrees of freedom from the samples, a and b, using your functions.
 
 
 ```python
 #Your code here; calculate t and the degrees of freedom for the two samples, a and b
-t = welch_t(treatment, control)
-df = welch_df(treatment, control)
 print(t,df)
 # (1.325675538604432, 8.95372010421334)
 ```
-
-
-
-
-    (1.325675538604432, 8.95372010421334)
-
-
 
 ## Converting to a p-Value
 
@@ -120,8 +82,8 @@ Calculate the p-value associated with this experiment.
 
 
 ```python
-p = 1 - stats.t.cdf(t, df)
-p
+#Your code here; calculate the p-value for the two samples defined above
+print(p)
 # 0.10888620005627703
 ```
 
@@ -144,34 +106,17 @@ With that, define a summative function `p_val_welch(a, b, two_sided=False)` whic
 
 ```python
 def p_value(a, b, two_sided=False):
-
-    "Two-sided t-test for two samples a and b."
-
-    t = welch_t(a, b)
-    df = welch_df(a, b)
-    
-    p = stats.t.cdf(-np.abs(t), df)
-    
-    if two_sided:
-        return 2*p
-    else:
-        return p
+    #Your code here
+    return #Return the p-value!
 ```
 
-Now briefly test your function.
+Now briefly test your function; no need to write any code just run the cells below to ensure your function is operating properly. The output should match the commented values.
 
 
 ```python
 p_value(treatment, control)
 #0.10888620005627703
 ```
-
-
-
-
-    (1.325675538604432, 0.21777240011255405)
-
-
 
 
 ```python
