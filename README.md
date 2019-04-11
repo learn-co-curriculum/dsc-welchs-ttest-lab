@@ -158,7 +158,7 @@ def p_value(a, b, two_sided=False):
         return p
 ```
 
-Now briefly test your function.
+Now briefly test your function; no need to write any code just run the cells below to ensure your function is operating properly. The output should match the commented values.
 
 
 ```python
