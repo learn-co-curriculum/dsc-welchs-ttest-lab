@@ -113,7 +113,7 @@ def welch_df(a, b):
     return numerator/denominator
 
 welch_df(control, treatment)
-# 17.86731104513857
+# 17.673079085111
 ```
 
 
