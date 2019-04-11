@@ -7,7 +7,7 @@ Now that you've gotten a brief introduction to Welch's T-test, it's time to prac
 
 ## Objectives
 You will be able to:
-* Write a function computing Welch's t-test using Numpy
+* Write a function computing Welch's t-test using NumPy
 
 
 ### Welch's t-Test
@@ -20,14 +20,43 @@ where $\bar{X_i}$ , $s_i$, and $N_i$ are the sample mean, sample variance, and s
 
 Write a function for calculatying Welch's t-statistic using two samples a, and b. To help, 2 potential samples are defined below.
 
+> **Important Note**: While the formula does not indicate it, it is appropriate to take the absolute value of the t-value.
+
 
 ```python
 import numpy as np
 
 np.random.seed(82)
-control = np.random.randn(10) + 2 # +2 for shifting mean 
-treatment = np.random.randn(10) + 2
+control = np.random.normal(loc=10, scale=1, size=8)
+treatment = np.random.normal(loc=10.5, scale=1.2, size=12)
 ```
+
+
+```python
+control
+```
+
+
+
+
+    array([10.8406504 ,  8.64285284, 11.28693651, 10.57347539, 10.57945015,
+            9.97237817,  9.61844717,  9.69121804])
+
+
+
+
+```python
+treatment
+```
+
+
+
+
+    array([12.16530726, 12.5597993 , 11.76525366,  9.82399228, 11.03539891,
+           12.8992533 , 10.78680718, 11.71126641, 10.2343344 ,  9.77839837,
+            9.72938618, 10.39959928])
+
+
 
 
 ```python
@@ -39,7 +68,7 @@ def welch_t(a, b):
     return #Return the t-score!
 
 welch_t(control,treatment)
-# 0.41037468596041143
+# 2.0997990691576858
 ```
 
 ## Degrees of Freedom
@@ -62,7 +91,7 @@ def welch_df(a, b):
     return #Return the degrees of freedom
 
 welch_df(control, treatment)
-# 17.86731104513857
+# 17.673079085111
 ```
 
 Now calculate the welch-t score and degrees of freedom from the samples, a and b, using your functions.
@@ -71,7 +100,7 @@ Now calculate the welch-t score and degrees of freedom from the samples, a and b
 ```python
 #Your code here; calculate t and the degrees of freedom for the two samples, a and b
 print(t,df)
-# (1.325675538604432, 8.95372010421334)
+# 2.0997990691576858 17.673079085111
 ```
 
 ## Converting to a p-Value
@@ -84,15 +113,8 @@ Calculate the p-value associated with this experiment.
 ```python
 #Your code here; calculate the p-value for the two samples defined above
 print(p)
-# 0.10888620005627703
+# 0.025191666225846454
 ```
-
-
-
-
-    0.10888620005627703
-
-
 
 In this case, there is a 2.5% probability you would see t equal to or greater than what you saw from the data. Given that alpha was set at 0.05, this would constitute sufficient evidence to reject the null hypothesis.
 
@@ -115,13 +137,13 @@ Now briefly test your function; no need to write any code just run the cells bel
 
 ```python
 p_value(treatment, control)
-#0.10888620005627703
+#0.025191666225846454
 ```
 
 
 ```python
 p_value(treatment, control, two_side=True)
-#0.21777240011255405
+#0.05038333245169291
 ```
 
 ## Summary
