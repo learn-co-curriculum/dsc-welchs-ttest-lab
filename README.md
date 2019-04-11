@@ -94,7 +94,7 @@ print(p)
 
 
 
-In this case, there is a 10% probability you would see t equal to or greater than what you saw from the data. Given that alpha was set at 0.05, this would not constitute sufficient evidence to reject the null hypothesis.
+In this case, there is a 2.5% probability you would see t equal to or greater than what you saw from the data. Given that alpha was set at 0.05, this would constitute sufficient evidence to reject the null hypothesis.
 
 Building on this, you can also write a function that calculates the p-value for given samples with a two-sided test by taking advantage of the symmetry of the t-distribution to calculate only one side. The two-tailed p-value is simply twice the one-tailed value, because you want the probability:  
 >$t<−|t̂|$ and  $t>|t̂|$ , where t̂  is the t-statistic calculated from our data  
