@@ -7,7 +7,7 @@ Now that you've gotten a brief introduction to Welch's T-test, it's time to prac
 
 ## Objectives
 You will be able to:
-* Write a function computing Welch's t-test using Numpy
+* Write a function computing Welch's t-test using NumPy
 
 
 ### Welch's t-Test
@@ -19,6 +19,8 @@ Recall that Welch's t-Test is given by
 where $\bar{X_i}$ , $s_i$, and $N_i$ are the sample mean, sample variance, and sample size, respectively, for sample i.
 
 Write a function for calculatying Welch's t-statistic using two samples a, and b. To help, 2 potential samples are defined below.
+
+> **Important Note**: While the formula does not indicate it, it is appropriate to take the absolute value of the t-value.
 
 
 ```python
