@@ -14,7 +14,7 @@ You will be able to:
 
 Recall that Welch's t-Test is given by  
 
-<img src="images/Welchs-test-for-unequal-variances.png">
+# $ t = \frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{s_1^2}{N_1} + \frac{s_2^2}{N_2}}} = \frac{\bar{X_1}-\bar{X_2}}{\sqrt{se_1^2+se_2^2}}$
 
 where $\bar{X_i}$ , $s_i$, and $N_i$ are the sample mean, sample variance, and sample size, respectively, for sample i.
 
@@ -74,8 +74,7 @@ welch_t(control,treatment)
 ## Degrees of Freedom
 Once you have the t-score, you also need to calculate the degrees of freedom to determine the appropriate t-distribution and convert this score into a p-value. The effective degrees of freedom can be calculated using the formula:
 
-<img src="images/Welch-degree of freedom.JPG">
-
+# $ v \approx \frac{\left( \frac{s_1^2}{N_1} + \frac{s_2^2}{N_2}\right)^2}{\frac{s_1^4}{N_1^2v_1} + \frac{s_2^4}{N_2^2v_2}} $
 
 $N_i$ - sample size of sample i  
 $s_i$ - variance of sample i  
