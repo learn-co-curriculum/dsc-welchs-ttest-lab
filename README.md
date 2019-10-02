@@ -18,7 +18,7 @@ Recall that Welch's t-Test is given by
 
 where $\bar{X_i}$ , $s_i$, and $N_i$ are the sample mean, sample variance, and sample size, respectively, for sample i.
 
-Write a function for calculatying Welch's t-statistic using two samples a, and b. To help, 2 potential samples are defined below.
+Write a function for calculating Welch's t-statistic using two samples a, and b. To help, 2 potential samples are defined below.
 
 > **Important Note**: While the formula does not indicate it, it is appropriate to take the absolute value of the t-value.
 
@@ -117,12 +117,12 @@ print(p)
 
 In this case, there is a 2.5% probability you would see t equal to or greater than what you saw from the data. Given that alpha was set at 0.05, this would constitute sufficient evidence to reject the null hypothesis.
 
-Building on this, you can also write a function that calculates the p-value for given samples with a two-sided test by taking advantage of the symmetry of the t-distribution to calculate only one side. The two-tailed p-value is simply twice the one-tailed value, because you want the probability:  
+Building on this, you can also write a function that calculates the p-value for given samples with a two-sided test by taking advantage of the symmetry of the t-distribution to calculate only one side. The two-tailed p-value is simply twice the one-tailed value because you want the probability:  
 >$t<−|t̂|$ and  $t>|t̂|$ , where t̂  is the t-statistic calculated from our data  
 
 With that, define a summative function `p_val_welch(a, b, two_sided=False)` which takes in two samples a and b, as  well as an optional binary variable to allow you to toggle between a one and two-sided Welch's $t$-test.   
 
-> The default behavior should be set to one-sided as indicated above. If the parameter two_sided is set to True, the function should return the p-value for a two-sided $t$-test, as oppossed to a one-sided $t$-test.
+> The default behavior should be set to one-sided as indicated above. If the parameter two_sided is set to True, the function should return the p-value for a two-sided $t$-test, as opposed to a one-sided $t$-test.
 
 
 ```python
