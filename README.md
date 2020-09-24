@@ -18,9 +18,9 @@ In this lab you will:
 
 Recall that Welch's t-Test is given by  
 
-# $ t = \frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{s_1^2}{N_1} + \frac{s_2^2}{N_2}}} = \frac{\bar{X_1}-\bar{X_2}}{\sqrt{se_1^2+se_2^2}}$
+# $ t = \frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{{s_1}^2}{N_1} + \frac{{s_2}^2}{N_2}}} = \frac{\bar{X_1}-\bar{X_2}}{\sqrt{{se_1}^2+{se_2}^2}}$
 
-where $\bar{X_i}$ , $s_i$, and $N_i$ are the sample mean, sample variance, and sample size, respectively, for sample i.
+where $\bar{X_i}$ , ${s_i}^2$, and $N_i$ are the sample mean, sample variance, and sample size, respectively, for sample i.
 
 Write a function for calculating Welch's t-statistic using two samples a and b. To help, 2 potential samples are defined below.
 
@@ -41,26 +41,9 @@ control
 ```
 
 
-
-
-    array([10.8406504 ,  8.64285284, 11.28693651, 10.57347539, 10.57945015,
-            9.97237817,  9.61844717,  9.69121804])
-
-
-
-
 ```python
 treatment
 ```
-
-
-
-
-    array([12.16530726, 12.5597993 , 11.76525366,  9.82399228, 11.03539891,
-           12.8992533 , 10.78680718, 11.71126641, 10.2343344 ,  9.77839837,
-            9.72938618, 10.39959928])
-
-
 
 
 ```python
