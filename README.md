@@ -62,11 +62,11 @@ welch_t(control, treatment)
 
 Once you have the t-score, you also need to calculate the degrees of freedom to determine the appropriate t-distribution and convert this score into a p-value. The effective degrees of freedom can be calculated using the formula:
 
-# $ v \approx \frac{\left( \frac{s_1^2}{N_1} + \frac{s_2^2}{N_2}\right)^2}{\frac{s_1^4}{N_1^2v_1} + \frac{s_2^4}{N_2^2v_2}} $
+# $ v \approx \frac{\left( \frac{{s_1}^2}{N_1} + \frac{{s_2}^2}{N_2}\right)^2}{\frac{{s_1}^4}{{{N_1}^2}v_1} + \frac{{s_2}^4}{{{N_2}^2}v_2}} $
 
 $N_i$ - sample size of sample i  
-$s_i$ - variance of sample i  
-$v_i$ - degrees of freedom for sample i (equivalent to $N_i$-1)  
+${s_i}^2$ - variance of sample i  
+$v_i$ - degrees of freedom for sample i (equivalent to $N_i-1$)  
   
 Write a second function to calculate degree of freedom for above samples:
 
