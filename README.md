@@ -18,9 +18,9 @@ In this lab you will:
 
 Recall that Welch's t-Test is given by  
 
-# $ t = \frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{s_1^2}{N_1} + \frac{s_2^2}{N_2}}} = \frac{\bar{X_1}-\bar{X_2}}{\sqrt{se_1^2+se_2^2}}$
+# $ t = \frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{{s_1}^2}{N_1} + \frac{{s_2}^2}{N_2}}} = \frac{\bar{X_1}-\bar{X_2}}{\sqrt{{se_1}^2+{se_2}^2}}$
 
-where $\bar{X_i}$ , $s_i$, and $N_i$ are the sample mean, sample variance, and sample size, respectively, for sample i.
+where $\bar{X_i}$ , ${s_i}^2$, and $N_i$ are the sample mean, sample variance, and sample size, respectively, for sample i.
 
 Write a function for calculating Welch's t-statistic using two samples a and b. To help, 2 potential samples are defined below.
 
@@ -41,26 +41,9 @@ control
 ```
 
 
-
-
-    array([10.8406504 ,  8.64285284, 11.28693651, 10.57347539, 10.57945015,
-            9.97237817,  9.61844717,  9.69121804])
-
-
-
-
 ```python
 treatment
 ```
-
-
-
-
-    array([12.16530726, 12.5597993 , 11.76525366,  9.82399228, 11.03539891,
-           12.8992533 , 10.78680718, 11.71126641, 10.2343344 ,  9.77839837,
-            9.72938618, 10.39959928])
-
-
 
 
 ```python
@@ -92,27 +75,10 @@ control
 ```
 
 
-
-
-    array([10.8406504 ,  8.64285284, 11.28693651, 10.57347539, 10.57945015,
-            9.97237817,  9.61844717,  9.69121804])
-
-
-
-
 ```python
 # __SOLUTION__ 
 treatment
 ```
-
-
-
-
-    array([12.16530726, 12.5597993 , 11.76525366,  9.82399228, 11.03539891,
-           12.8992533 , 10.78680718, 11.71126641, 10.2343344 ,  9.77839837,
-            9.72938618, 10.39959928])
-
-
 
 
 ```python
@@ -133,13 +99,6 @@ def welch_t(a, b):
 welch_t(control, treatment)
 # 2.0997990691576858
 ```
-
-
-
-
-    2.0997990691576858
-
-
 
 ## Degrees of freedom
 
@@ -185,13 +144,6 @@ welch_df(control, treatment)
 # 17.673079085111
 ```
 
-
-
-
-    17.673079085111
-
-
-
 Now calculate the welch t-score and degrees of freedom from the samples, a and b, using your functions.
 
 
@@ -212,9 +164,6 @@ df = welch_df(control, treatment)
 print(t,df)
 # 2.0997990691576858 17.673079085111
 ```
-
-    2.0997990691576858 17.673079085111
-
 
 ## Convert to a p-value
 
@@ -244,9 +193,6 @@ p = 1 - stats.t.cdf(t, df)
 print(p)
 # 0.025191666225846454
 ```
-
-    0.025191666225846454
-
 
 In this case, there is a 2.5% probability you would see a t-score equal to or greater than what you saw from the data. Given that alpha was set at 0.05, this would constitute sufficient evidence to reject the null hypothesis.
 
@@ -302,25 +248,11 @@ p_value(control, treatment)
 ```
 
 
-
-
-    0.025191666225846454
-
-
-
-
 ```python
 # __SOLUTION__ 
 p_value(control, treatment, two_sided=True)
 # 0.05038333245169291
 ```
-
-
-
-
-    0.05038333245169291
-
-
 
 ## Summary
 
