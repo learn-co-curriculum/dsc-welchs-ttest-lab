@@ -133,7 +133,7 @@ p_value(treatment, control)
 
 
 ```python
-p_value(treatment, control, two_side=True)
+p_value(treatment, control, two_sided=True)
 # 0.05038333245169291
 ```
 
